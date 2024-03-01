@@ -1,101 +1,109 @@
-.dish-list-item {
-  box-shadow: 0px 0px 2px 1px rgba(0, 0, 255, 0.2);
-  margin: 16px;
-  border-radius: 8px;
-  display: flex;
+.dish-item-container {
+  border: 1px solid gray;
+  border-radius: 12px;
   justify-content: space-between;
-  padding: 8px;
 }
-.dish-type-container {
-  margin-right: 4px;
-  width: 40px;
+
+.veg-border {
+  border: 1px solid #00923f;
+  align-self: flex-start;
 }
-.dish-info-container {
-  width: 60%;
+
+.non-veg-border {
+  border: 1px solid #92282a;
 }
-.dishName {
-  margin-top: 0;
-  margin-bottom: 0;
+
+.veg-round {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #00923f;
+  margin: 5px;
+}
+
+.non-veg-round {
+  background-color: #92282a;
+}
+
+.dish-details-container {
+  flex-grow: 1;
+}
+
+.dish-name {
   font-weight: 600;
   font-family: 'Roboto';
-  font-size: 24px;
-  color: black;
+  font-size: 25px;
+  margin-top: 0;
 }
+
 .dish-currency-price {
-  font-family: 'Roboto';
-  font-size: 20px;
+  color: #525252;
   font-weight: 600;
-  margin-top: 6px;
-  color: #5c5b5b;
+  font-family: 'Roboto';
+  font-size: 16px;
+  margin-top: 0;
   margin-bottom: 0;
 }
+
 .dish-description {
-  color: #918f8e;
+  color: #bfc3c7;
+  font-weight: 500;
   font-family: 'Roboto';
-  font-size: 14px;
-  margin-top: 6px;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-.availability {
-  margin-top: 0;
-  display: flex;
+
+.controller-container {
+  width: fit-content;
+  min-width: 150px;
   justify-content: space-between;
-  align-items: center;
-  background-color: green;
-  border-radius: 26px;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100px;
-  height: 50px;
+  padding: 10px;
+  border-radius: 50px;
 }
-.buttons {
+
+.button {
+  padding: 5px;
   background-color: transparent;
   border: none;
-  color: #ffffff;
-  font-size: 20px;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
 }
+
 .quantity {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.not-availability-text {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.addon-availability-text {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 5px 0;
+  color: #734ff4;
+}
+
+.dish-calories {
+  min-width: 150px;
+  max-width: 250px;
+  font-weight: 500;
   font-family: 'Roboto';
   font-size: 18px;
-  color: #ffffff;
+  align-self: center;
 }
-.not-available {
-  font-family: 'Roboto';
-  font-size: 20px;
-  color: red;
-}
-.customization {
-  font-family: 'Roboto';
-  color: blue;
-  font-size: 16px;
-  margin-top: 3px;
-}
-.calories-container {
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-}
-.calories {
-  font-family: 'Roboto';
-  color: orange;
-  font-size: 16px;
-  font-weight: 600;
-}
+
 .dish-image {
-  width: 120px;
-  height: 100px;
-  border-radius: 10px;
-}
-@media (min-width: 768px) {
-  .dish-image {
-    height: 200px;
-    width: 200px;
-  }
-  .dish-info-container {
-    width: 50%;
-  }
-  .calories {
-    font-size: 20px;
-  }
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  align-self: flex-start;
 }

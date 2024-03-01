@@ -1,74 +1,79 @@
-import {GrSquare} from 'react-icons/gr'
+import {useState, useContext} from 'react'
+
+import CartContext from '../../context/CartContext'
+
 import './index.css'
 
-const Dishes = props => {
-  const {details, cartItems, decrementQuantity, incrementQuantity} = props
+const Dishes = ({dishDetails}) => {
   const {
-    dishType,
-    dishImage,
     dishName,
-    dishCurrency,
+    dishType,
     dishPrice,
+    dishCurrency,
     dishDescription,
-    dishAvailability,
-    addOnCat,
+    dishImage,
     dishCalories,
-    dishId,
-  } = details
+    addonCat,
+    dishAvailability,
+  } = dishDetails
 
-  const onDecrementQuantity = () => decrementQuantity(details)
+  const [quantity, setQuantity] = useState(0)
+  const {addCartItem} = useContext(CartContext)
 
-  const onIncrementQuantity = () => incrementQuantity(details)
+  const onIncreaseQuantity = () => setQuantity(prevState => prevState + 1)
 
-  const getQuantity = () => {
-    const cartItem = cartItems.find(item => item.dishId === dishId)
-    return cartItem ? cartItem.quantity : 0
-  }
+  const onDecreaseQuantity = () =>
+    setQuantity(prevState => (prevState > 0 ? prevState - 1 : 0))
+
+  const onAddItemToCart = () => addCartItem({...dishDetails, quantity})
+
+  const renderControllerButton = () => (
+    <div className="controller-container d-flex align-items-center bg-success">
+      <button className="button" type="button" onClick={onDecreaseQuantity}>
+        -
+      </button>
+      <p className="quantity">{quantity}</p>
+      <button className="button" type="button" onClick={onIncreaseQuantity}>
+        +
+      </button>
+    </div>
+  )
 
   return (
-    <li className="dish-list-item">
-      <div className="dish-type-container">
-        {dishType % 2 === 0 ? (
-          <GrSquare size={35} color="green" />
-        ) : (
-          <GrSquare size={35} color="red" />
-        )}
+    <li className="mb-3 p-3 dish-item-container d-flex">
+      <div
+        className={`veg-border ${dishType === 1 ? 'non-veg-border' : ''} me-3`}
+      >
+        <div className={`veg-round ${dishType === 1 ? 'non-veg-round' : ''}`} />
       </div>
-      <div className="dish-info-container">
-        <h1 className="dishName">{dishName}</h1>
+      <div className="dish-details-container">
+        <h1 className="dish-name">{dishName}</h1>
         <p className="dish-currency-price">
           {dishCurrency} {dishPrice}
         </p>
         <p className="dish-description">{dishDescription}</p>
-        {dishAvailability === true ? (
-          <div className="availability">
-            <button
-              type="button"
-              className="buttons"
-              onClick={onDecrementQuantity}
-            >
-              -
-            </button>
-            <p className="quantity">{getQuantity()}</p>
-            <button
-              type="button"
-              className="buttons"
-              onClick={onIncrementQuantity}
-            >
-              +
-            </button>
-          </div>
-        ) : (
-          <p className="not-available">Not available</p>
+        {dishAvailability && renderControllerButton()}
+        {!dishAvailability && (
+          <p className="not-availability-text text-danger">Not available</p>
         )}
-        {addOnCat.length !== 0 && (
-          <p className="customization">Customizations available</p>
+        {addonCat.length !== 0 && (
+          <p className="addon-availability-text mb-0">
+            Customizations available
+          </p>
+        )}
+        {quantity > 0 && (
+          <button
+            type="button"
+            className="btn btn-outline-primary mt-3"
+            onClick={onAddItemToCart}
+          >
+            ADD TO CART
+          </button>
         )}
       </div>
-      <div className="calories-container">
-        <p className="calories">{dishCalories} Calories</p>
-      </div>
-      <img src={dishImage} alt={dishName} className="dish-image" />
+
+      <p className="dish-calories text-warning">{dishCalories} calories</p>
+      <img className="dish-image" alt={dishName} src={dishImage} />
     </li>
   )
 }
