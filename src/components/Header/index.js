@@ -36,7 +36,7 @@ const Header = props => {
     <div className="cart-icon-link">
       <Link to="/cart">
         <button type="button" className="cart-icon-button">
-          <AiOutlineShoppingCart className="cart-icon" />
+          <AiOutlineShoppingCart data-testid="cart" className="cart-icon" />
         </button>
       </Link>
       <div className="cart-count-badge d-flex justify-content-center align-items-center">
